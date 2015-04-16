@@ -14,22 +14,18 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       	  
+	<?php if($this->session->userdata('username')) : ?>
       <ul class="nav navbar-nav navbar-right">
-		<li><?php echo anchor(base_url(), 'Home');?></li>
         <li>
-			<?php
-				$text_cart_url  = '<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>';
-				$text_cart_url .= ' Inside Cart: '. $this->cart->total_items() .' items';
-			?>
-			<?=anchor('welcome/cart', $text_cart_url)?>
+			<span style="line-height:50px;">
+				<?php echo 'You Are: ' . $this->session->userdata('username');?>
+			</span>
 		</li>
-		<?php if($this->session->userdata('username')) { ?>
-			<li><div style="line-height:50px;">You Are : <?=$this->session->userdata('username')?></div></li>
-			<li><?php echo anchor('logout', 'Logout');?></li>
-		<?php } else { ?>
-			<li><?php echo anchor('login', 'Login');?></li>
-		<?php } ?>
+		<li>
+			<?php echo anchor('logout', 'Logout');?>
+		</li>
       </ul>
+	  <?php endif; ?>
 	  
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
