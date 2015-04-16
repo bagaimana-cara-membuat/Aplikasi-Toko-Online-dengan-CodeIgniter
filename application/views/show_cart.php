@@ -44,7 +44,7 @@
 		<div align="center">
 			<?= anchor('welcome/clear_cart','Clear Cart',['class'=>'btn btn-danger']) ?> 
 			<?= anchor(base_url(),'Continue Shopping',['class'=>'btn btn-primary']) ?> 
-			<?= anchor('#','Check Out',['class'=>'btn btn-success']) ?>
+			<?= anchor('order','Check Out',['class'=>'btn btn-success']) ?>
 		</div>
 	</body>
 </html>

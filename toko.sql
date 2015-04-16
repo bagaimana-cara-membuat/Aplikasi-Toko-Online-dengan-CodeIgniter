@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2015 at 11:45 AM
+-- Generation Time: Apr 08, 2015 at 02:14 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -39,6 +39,54 @@ CREATE TABLE IF NOT EXISTS `groups` (
 INSERT INTO `groups` (`id`, `name`) VALUES
 (1, 'Admin'),
 (2, 'Member');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE IF NOT EXISTS `invoices` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `due_date` datetime NOT NULL,
+  `status` enum('paid','unpaid','canceled','expired') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `date`, `due_date`, `status`) VALUES
+(1, '2015-01-04 05:06:50', '2015-01-05 05:06:50', 'unpaid'),
+(2, '2015-01-04 05:10:20', '2015-01-05 05:10:20', 'unpaid');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `invoice_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `qty` int(3) NOT NULL,
+  `price` int(9) NOT NULL,
+  `options` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `invoice_id`, `product_id`, `product_name`, `qty`, `price`, `options`) VALUES
+(1, 1, 1, 'Baju', 1, 79000, ''),
+(2, 1, 3, 'Topi', 1, 80000, ''),
+(3, 2, 5, 'Dasi', 1, 77500, '');
 
 -- --------------------------------------------------------
 
@@ -88,8 +136,7 @@ CREATE TABLE IF NOT EXISTS `toko_sessions` (
 --
 
 INSERT INTO `toko_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('8afe3ff03f2456b7c417f5aea1ca2087', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1420281888, ''),
-('d30017a27f9400c0f51474ec978338a5', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1420076331, 'a:3:{s:9:"user_data";s:0:"";s:8:"username";s:3:"bob";s:5:"group";s:1:"2";}');
+('ec6adb08d9b5fa4f645c3c1119deb37f', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1420344360, 'a:2:{s:8:"username";s:3:"bob";s:5:"group";s:1:"2";}');
 
 -- --------------------------------------------------------
 
