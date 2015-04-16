@@ -7,7 +7,8 @@
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h1>Toko Online</h1>
+		<?php $this->load->view('layout/top_menu') ?>
+		
 		<!-- Tampilkan semua produk -->
 		<div class="row">
 		<!-- looping products -->
@@ -22,7 +23,10 @@
 				<h3 style="min-height:60px;"><?=$product->name?></h3>
 				<p><?=$product->description?></p>
 				<p>
-					<a href="#" class="btn btn-primary" role="button">Buy</a>
+					<?=anchor('welcome/add_to_cart/' . $product->id, 'Buy' , [
+						'class'	=> 'btn btn-primary',
+						'role'	=> 'button'
+					])?>
 				</p>
 			  </div>
 			</div>
@@ -30,5 +34,6 @@
 		  <?php endforeach; ?>
 		<!-- end looping -->
 		</div>
+		
 	</body>
 </html>
