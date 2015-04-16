@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2014 at 03:57 AM
+-- Generation Time: Dec 30, 2014 at 04:41 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -34,15 +34,18 @@ CREATE TABLE IF NOT EXISTS `products` (
   `stock` int(3) NOT NULL,
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `image`) VALUES
-(1, 'Baju', 'Baju Allsize', 79000, 5, ''),
-(2, 'Sandal Casual', 'Sandal Jepit Casual', 35000, 10, '');
+(1, 'Baju', 'Baju Kemeja', 79000, 5, '542.jpg'),
+(2, 'Sandal Casual', 'Sandal Jepit Casual', 35000, 10, '312618_011.jpg'),
+(3, 'Topi', 'Topi Casual', 80000, 12, '91qz+oNEDIL._SL1500__.jpg'),
+(4, 'Sepatu', 'Sepatu Kets', 240000, 1, 'Converse-Shoes.jpg'),
+(5, 'Dasi', 'Dasi Formal', 77500, 1, 'Platinum-Ties-Mens-Red-Power-Tie-Necktie-P14034714.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `toko_sessions` (
 --
 
 INSERT INTO `toko_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('ce89594370a47c33d74b016136cdbad1', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1419591408, '');
+('564b699d6f64f357376fa0c95527ab0a', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1419953407, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
