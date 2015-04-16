@@ -14,7 +14,31 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message', $data);
 	}
 	
+	public function add_to_cart($product_id)
+	{
+		$product = $this->model_products->find($product_id);
+		$data = array(
+					   'id'      => $product->id,
+					   'qty'     => 1,
+					   'price'   => $product->price,
+					   'name'    => $product->name
+					);
+
+		$this->cart->insert($data);
+		redirect(base_url());
+	}
 	
+	public function cart(){
+		// displays what currently inside the cart
+		//print_r($this->cart->contents());
+		$this->load->view('show_cart');
+	}
+	
+	public function clear_cart()
+	{
+		$this->cart->destroy();
+		redirect(base_url());
+	}
 }
 
 /* End of file welcome.php */
