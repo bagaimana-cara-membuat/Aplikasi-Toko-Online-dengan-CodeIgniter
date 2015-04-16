@@ -33,7 +33,7 @@ if($this->input->post('is_submitted')){
 			<div class="col-md-10">
 				<h1>Edit Product</h1>
 				<div><?= validation_errors() ?></div>
-				<?= form_open('admin/products/update/' . $id, ['class'=>'form-horizontal']) ?>
+				<?= form_open_multipart('admin/products/update/' . $id, ['class'=>'form-horizontal']) ?>
 					
 					  <div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Product Name</label>
@@ -60,6 +60,13 @@ if($this->input->post('is_submitted')){
 						<label for="inputPassword3" class="col-sm-2 control-label">Available Stock</label>
 						<div class="col-sm-10">
 						  <input type="text" class="form-control" name="stock" placeholder="" value="<?= $stock ?>">
+						</div>
+					  </div>
+					  
+					  <div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Product Image</label>
+						<div class="col-sm-10">
+						  <input type="file" class="form-control" name="userfile" >
 						</div>
 					  </div>
 					  

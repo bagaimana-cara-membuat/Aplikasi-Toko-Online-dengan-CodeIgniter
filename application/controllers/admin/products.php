@@ -19,20 +19,40 @@ class Products extends CI_Controller {
 		$this->form_validation->set_rules('description', 'Product Description', 'required');
 		$this->form_validation->set_rules('price', 'Product Price', 'required|integer');
 		$this->form_validation->set_rules('stock', 'Available Stock', 'required|integer');
+		//$this->form_validation->set_rules('userfile', 'Product Image', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('backend/form_tambah_product');
 		} else {
-			// eksekusi query INSERT
-			$data_product =	array(
-				'name'			=> set_value('name'),
-				'description'	=> set_value('description'),
-				'price'			=> set_value('price'),
-				'stock'			=> set_value('stock')
-			);
-			$this->model_products->create($data_product);
-			redirect('admin/products');
+			//load uploading file library
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'jpg|png';
+			$config['max_size']	= '300'; //MB
+			$config['max_width']  = '2000'; //pixels
+			$config['max_height']  = '2000'; //pixels
+
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload())
+			{
+				//file gagal diupload -> kembali ke form tambah
+				$this->load->view('backend/form_tambah_product');
+			} else {
+				//file berhasil diupload -> lanjutkan ke query INSERT
+				// eksekusi query INSERT
+				$gambar = $this->upload->data();
+				$data_product =	array(
+					'name'			=> set_value('name'),
+					'description'	=> set_value('description'),
+					'price'			=> set_value('price'),
+					'stock'			=> set_value('stock'),
+					'image'			=> $gambar['file_name']
+				);
+				$this->model_products->create($data_product);
+				redirect('admin/products');
+			}
+			
 		}
 	}
 	
@@ -47,14 +67,45 @@ class Products extends CI_Controller {
 			$data['product'] = $this->model_products->find($id);
 			$this->load->view('backend/form_edit_product', $data);
 		} else {
-			$data_product =	array(
-				'name'			=> set_value('name'),
-				'description'	=> set_value('description'),
-				'price'			=> set_value('price'),
-				'stock'			=> set_value('stock')
-			);
-			$this->model_products->update($id, $data_product);
-			redirect('admin/products');
+			if($_FILES['userfile']['name'] != ''){
+				//form submit dengan gambar diisi
+				//load uploading file library
+				$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'jpg|png';
+				$config['max_size']	= '300'; //MB
+				$config['max_width']  = '2000'; //pixels
+				$config['max_height']  = '2000'; //pixels
+
+				$this->load->library('upload', $config);
+			
+			
+				if ( ! $this->upload->do_upload())
+				{
+					$data['product'] = $this->model_products->find($id);
+					$this->load->view('backend/form_edit_product', $data);
+				} else {
+					$gambar = $this->upload->data();
+					$data_product =	array(
+						'name'			=> set_value('name'),
+						'description'	=> set_value('description'),
+						'price'			=> set_value('price'),
+						'stock'			=> set_value('stock'),
+						'image'			=> $gambar['file_name']
+					);
+					$this->model_products->update($id, $data_product);
+					redirect('admin/products');
+				}
+			} else {
+				//form submit dengan gambar dikosongkan
+				$data_product =	array(
+					'name'			=> set_value('name'),
+					'description'	=> set_value('description'),
+					'price'			=> set_value('price'),
+					'stock'			=> set_value('stock')
+				);
+				$this->model_products->update($id, $data_product);
+				redirect('admin/products');
+			}
 		}
 	}
 	

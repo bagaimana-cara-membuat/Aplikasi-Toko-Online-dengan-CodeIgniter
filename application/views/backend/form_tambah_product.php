@@ -19,7 +19,7 @@
 			<div class="col-md-10">
 				<h1>Add New Product</h1>
 				<div><?= validation_errors() ?></div>
-				<?= form_open('admin/products/create', ['class'=>'form-horizontal']) ?>
+				<?= form_open_multipart('admin/products/create', ['class'=>'form-horizontal']) ?>
 					
 					  <div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Product Name</label>
@@ -46,6 +46,13 @@
 						<label for="inputPassword3" class="col-sm-2 control-label">Available Stock</label>
 						<div class="col-sm-10">
 						  <input type="text" class="form-control" name="stock" placeholder="" value="<?= set_value('stock') ?>">
+						</div>
+					  </div>
+					  
+					  <div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Product Image</label>
+						<div class="col-sm-10">
+						  <input type="file" class="form-control" name="userfile" >
 						</div>
 					  </div>
 					  
