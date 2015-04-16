@@ -3,6 +3,12 @@
 class Products extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
+		
+		if($this->session->userdata('group') != '1'){
+			$this->session->set_flashdata('error','Sorry, you are not logged in!');
+			redirect('login');
+		}
+		
 		//load model -> model_products
 		$this->load->model('model_products');
 	}
@@ -28,7 +34,7 @@ class Products extends CI_Controller {
 			//load uploading file library
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'jpg|png';
-			$config['max_size']	= '300'; //MB
+			$config['max_size']	= '300'; //KB
 			$config['max_width']  = '2000'; //pixels
 			$config['max_height']  = '2000'; //pixels
 
@@ -72,7 +78,7 @@ class Products extends CI_Controller {
 				//load uploading file library
 				$config['upload_path'] = './uploads/';
 				$config['allowed_types'] = 'jpg|png';
-				$config['max_size']	= '300'; //MB
+				$config['max_size']	= '300'; //KB
 				$config['max_width']  = '2000'; //pixels
 				$config['max_height']  = '2000'; //pixels
 

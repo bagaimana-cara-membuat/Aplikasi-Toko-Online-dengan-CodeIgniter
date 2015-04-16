@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2014 at 07:26 PM
+-- Generation Time: Jan 03, 2015 at 11:45 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `toko`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `groups`
+--
+
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` tinyint(1) NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`) VALUES
+(1, 'Admin'),
+(2, 'Member');
 
 -- --------------------------------------------------------
 
@@ -68,7 +88,30 @@ CREATE TABLE IF NOT EXISTS `toko_sessions` (
 --
 
 INSERT INTO `toko_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('4029d8ef4c00ddd08a16f5703c62e9e2', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1419963962, '');
+('8afe3ff03f2456b7c417f5aea1ca2087', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1420281888, ''),
+('d30017a27f9400c0f51474ec978338a5', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36', 1420076331, 'a:3:{s:9:"user_data";s:0:"";s:8:"username";s:3:"bob";s:5:"group";s:1:"2";}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `group` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `group`) VALUES
+(1, 'admin', 'admin', 1),
+(2, 'bob', '123', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
