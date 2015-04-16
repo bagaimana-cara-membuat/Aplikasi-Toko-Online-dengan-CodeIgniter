@@ -49,7 +49,9 @@
 								?> 
 								<?=anchor(	'admin/products/delete/' . $product->id, 
 											'Delete',
-											['class'=>'btn btn-danger btn-sm'])
+											['class'=>'btn btn-danger btn-sm',
+											 'onclick'=>'return confirm(\'Apakah Anda Yakin?\')'
+											])
 								?> 
 							</td>
 						</tr>
