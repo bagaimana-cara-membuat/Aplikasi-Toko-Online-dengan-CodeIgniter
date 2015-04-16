@@ -23,7 +23,7 @@
 						<tr>
 							<th>#</th>
 							<th>Product Name</th>
-							<th>Description</th>
+							<th>Product Image</th>
 							<th>Price</th>
 							<th>Stock</th>
 							<th>
@@ -39,7 +39,12 @@
 						<tr>
 							<td><?=$product->id?></td>
 							<td><?=$product->name?></td>
-							<td><?=$product->description?></td>
+							<td><?php
+								$product_image = [	'src'	=> 'uploads/' . $product->image,
+													'height'	=> '50'
+													];
+								echo img($product_image)
+							?></td>
 							<td><?=$product->price?></td>
 							<td><?=$product->stock?></td>
 							<td>
