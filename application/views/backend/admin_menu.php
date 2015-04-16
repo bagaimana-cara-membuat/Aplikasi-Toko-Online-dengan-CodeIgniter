@@ -15,6 +15,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       	  
 	<?php if($this->session->userdata('username')) : ?>
+      <ul class="nav navbar-nav navbar-left">
+        <li><?=anchor('admin/products','Products')?></li>
+        <li><?=anchor('admin/invoices','Invoices')?></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
 			<span style="line-height:50px;">
